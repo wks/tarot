@@ -2,7 +2,7 @@ local S = minetest.get_translator and minetest.get_translator("tarot")
 
 core.register_tool("tarot:deck", {
 	description = S("A Rider Waite Tarot deck"),
-	inventory_image = "card_ico.png",
+	inventory_image = "tarot_card_ico.png",
 	stack_max=1,
 	on_use = function(itemstack, player, pointed_thing)
 		if not player then

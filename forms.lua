@@ -11,7 +11,7 @@ end
 --retorna um objeto carta
 local function get_a_card(index)
     local card = {}
-    card.image = "CardBacks.jpg"
+    card.image = "tarot_CardBacks.jpg"
     card.title = ""
     card.meaning = ""
     card.answer = ""
@@ -25,7 +25,7 @@ end
 function tarot.show_card(name, index)
     local card = get_a_card(index)
     --core.chat_send_all(dump(card))
-    local image = card.image --"01-TheMagician.jpg"
+    local image = card.image --"tarot_01-TheMagician.jpg"
     local title = card.title --"The Magician"
     local meaning = card.meaning --"blablabla"
     local answer = card.answer --"Yes"
