@@ -1,4 +1,4 @@
-local S = minetest.get_translator and minetest.get_translator("tarot_redo")
+local S = core.get_translator and core.get_translator("tarot_redo")
 
 core.register_tool("tarot_redo:deck", {
 	description = S("A Rider Waite Tarot deck"),
@@ -21,7 +21,7 @@ core.register_tool("tarot_redo:deck", {
 -- crafting
 --
 
-minetest.register_craft({
+core.register_craft({
     output = "tarot_redo:deck",
     recipe = {
         {"dye:red", "dye:green", "default:paper"},

@@ -1,4 +1,4 @@
-local S = minetest.get_translator and minetest.get_translator("tarot")
+local S = core.get_translator and core.get_translator("tarot_redo")
 
 --valida o indice das cartas
 local function validate_index(index)

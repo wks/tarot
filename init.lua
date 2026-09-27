@@ -1,6 +1,6 @@
 
-local path = minetest.get_modpath(minetest.get_current_modname()) .. "/"
-local S = minetest.get_translator and minetest.get_translator("tarot")
+local path = core.get_modpath(core.get_current_modname()) .. "/"
+local S = core.get_translator and core.get_translator("tarot_redo")
 
 tarot_redo = {}
 
