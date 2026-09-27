@@ -12,6 +12,8 @@ for _, suit in ipairs(tarot_redo.suits) do
     local cat_entry = {
         id = suit.id,
         title = suit.title,
+        first = suit.first,
+        last = suit.last,
         cards = {},
     }
     tarot_redo.catalog[suit.id] = cat_entry
