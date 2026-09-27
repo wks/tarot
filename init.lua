@@ -2,7 +2,7 @@
 local path = minetest.get_modpath(minetest.get_current_modname()) .. "/"
 local S = minetest.get_translator and minetest.get_translator("tarot")
 
-tarot = {}
+tarot_redo = {}
 
 dofile(path .. "dictionary.lua")
 dofile(path .. "forms.lua")
@@ -50,7 +50,7 @@ local function randomize_cards(name)
     return index
 end
 
-function tarot.get_one_card(name, cards_to_ignore)
+function tarot_redo.get_one_card(name, cards_to_ignore)
     cards_to_ignore = cards_to_ignore or {}
     local index = randomize_cards(name)
     while has_value (cards_to_ignore, index) do
@@ -63,5 +63,5 @@ core.register_chatcommand("select_reading", {
     params = "",
     description = S("this command opens the reading menu"),
     privs = {server = true},
-	func = tarot.select_reading
+	func = tarot_redo.select_reading
 })

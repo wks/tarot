@@ -1,8 +1,8 @@
-local S = minetest.get_translator and minetest.get_translator("tarot")
+local S = minetest.get_translator and minetest.get_translator("tarot_redo")
 
-core.register_tool("tarot:deck", {
+core.register_tool("tarot_redo:deck", {
 	description = S("A Rider Waite Tarot deck"),
-	inventory_image = "tarot_card_ico.png",
+	inventory_image = "tarot_redo_card_ico.png",
 	stack_max=1,
 	on_use = function(itemstack, player, pointed_thing)
 		if not player then
@@ -10,7 +10,7 @@ core.register_tool("tarot:deck", {
 		end
 
         local name = player:get_player_name()
-        if name then tarot.select_reading(name) end
+        if name then tarot_redo.select_reading(name) end
 
 	end,
 
@@ -22,11 +22,11 @@ core.register_tool("tarot:deck", {
 --
 
 minetest.register_craft({
-    output = "tarot:deck",
+    output = "tarot_redo:deck",
     recipe = {
-	    {"default:paper", "dye:blue", "dye:violet"},
-	    {"dye:yellow", "default:paper", "dye:black"},
         {"dye:red", "dye:green", "default:paper"},
+	    {"dye:yellow", "default:paper", "dye:black"},
+	    {"default:paper", "dye:blue", "dye:violet"},
     }
 })
 
