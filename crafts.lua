@@ -10,7 +10,7 @@ core.register_tool("tarot_redo:deck", {
 		end
 
         local name = player:get_player_name()
-        if name then tarot_redo.select_reading(name) end
+        if name then tarot_redo.open_main_ui(player) end
 
 	end,
 

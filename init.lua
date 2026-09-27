@@ -5,6 +5,7 @@ local S = core.get_translator and core.get_translator("tarot_redo")
 tarot_redo = {}
 
 dofile(path .. "dictionary.lua")
+dofile(path .. "catalog.lua")
 dofile(path .. "forms.lua")
 dofile(path .. "crafts.lua")
 
