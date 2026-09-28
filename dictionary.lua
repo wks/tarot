@@ -3,7 +3,7 @@ tarot_redo.deck = {
         image = "tarot_redo_00-TheFool.jpg",
         suit = "major",
         ordinal = 0,
-        title = "0 The Fool",
+        title = "The Fool",
         meaning = "Beginnings, freedom, innocence, originality, adventure, idealism, spontaneity\n" ..
             "Joyful, exuberant first steps\n" ..
             "Small bag - cares nothing for possible dangers/obstacles\n" ..
@@ -21,7 +21,7 @@ tarot_redo.deck = {
         image = "tarot_redo_01-TheMagician.jpg",
         suit = "major",
         ordinal = 1,
-        title = "I The Magician",
+        title = "The Magician",
         meaning = "Willpower, desire, creation, manifestation, resourcefulness, skill, ability, concentration\n" ..
             "One hand to the sky, one to the ground - as above, so below\n" ..
             "Wields all four suits, connects all elements\n" ..
@@ -37,7 +37,7 @@ tarot_redo.deck = {
         image = "tarot_redo_02-TheHighPriestess.jpg",
         suit = "major",
         ordinal = 2,
-        title = "II The High Priestess",
+        title = "The High Priestess",
         meaning = "Unconscious, intuition, mystery, spirituality, higher power, inner voice\n" ..
             "Guardian of the unconscious and beckons the traveller to the world within\n" ..
             "Complete grasp on emotions, ambitious\n" ..
@@ -52,7 +52,7 @@ tarot_redo.deck = {
         image = "tarot_redo_03-TheEmpress.jpg",
         suit = "major",
         ordinal = 3,
-        title = "III The Empress",
+        title = "The Empress",
         meaning =
             "Motherhood, fertility, nature, divine feminine, sensuality, nurturing, creativity, beauty, abundance\n" ..
             "Represents the Earth Mother\n" ..
@@ -71,7 +71,7 @@ tarot_redo.deck = {
         image = "tarot_redo_04-TheEmperor.jpg",
         suit = "major",
         ordinal = 4,
-        title = "IV The Emperor",
+        title = "The Emperor",
         meaning = "Stability, structure, protection, authority, control, practicality, focus, discipline, fatherliness\n" ..
             "Stoic ruler figure\n" ..
             "Rams heads - Aries\n" ..
@@ -90,7 +90,7 @@ tarot_redo.deck = {
         image = "tarot_redo_05-TheHierophant.jpg",
         suit = "major",
         ordinal = 5,
-        title = "V The Hierophant",
+        title = "The Hierophant",
         meaning = "Tradition, social groups, conventionality, conformity, education, knowledge, beliefs\n" ..
             "Religious figure in a formal environment\n" ..
             "Right hand raised in blessing, triple cross - pope (the Father, the Son, the Holy Spirit)\n" ..
@@ -104,7 +104,7 @@ tarot_redo.deck = {
         image = "tarot_redo_06-TheLovers.jpg",
         suit = "major",
         ordinal = 6,
-        title = "VI The Lovers",
+        title = "The Lovers",
         meaning = "Love, unions, partnerships, relationships, choices, romance, balance, unity\n" ..
             "Harmony, attractiveness, perfection in a relationship\n" ..
             "Trust and unity gives confidence and strength, empowering each party\n" ..
@@ -116,7 +116,7 @@ tarot_redo.deck = {
         image = "tarot_redo_07-TheChariot.jpg",
         suit = "major",
         ordinal = 7,
-        title = "VII The Chariot",
+        title = "The Chariot",
         meaning = "Success, ambition, determination, willpower, control, self-discipline, focus\n" ..
             "Black and white sphinxes - opposing forces that need to be controlled\n" ..
             "Guide sphinxes to work together to reach a destination\n" ..
@@ -130,7 +130,7 @@ tarot_redo.deck = {
         image = "tarot_redo_08-Strength.jpg",
         suit = "major",
         ordinal = 8,
-        title = "VIII Strength",
+        title = "Strength",
         meaning = "Courage, bravery, confidence, compassion, self-confidence, inner power\n" ..
             "Woman gracefully controlling lion, calm and collected\n" ..
             "Maintain control and discipline in times of great adversity\n" ..
@@ -146,7 +146,7 @@ tarot_redo.deck = {
         image = "tarot_redo_09-TheHermit.jpg",
         suit = "major",
         ordinal = 9,
-        title = "IX The Hermit",
+        title = "The Hermit",
         meaning =
             "Self-reflection, introspection, contemplation, withdrawal, solitude, search for self, search for truth\n" ..
             "Six pointed star - wisdom, staff - authority and power\n" ..
@@ -163,7 +163,7 @@ tarot_redo.deck = {
         image = "tarot_redo_10-WheelOfFortune.jpg",
         suit = "major",
         ordinal = 10,
-        title = "X The Wheel of Fortune",
+        title = "Wheel of Fortune",
         meaning = "Change, cycles, fate, decisive moments, luck, fortune, unexpected events\n" ..
             "The Wheel of Fortune turns evermore, to communicate that life is made of both good and bad, and we cannot control it\n" ..
             "What goes up must come down, and bad things will eventually turn to good\n" ..
@@ -174,7 +174,7 @@ tarot_redo.deck = {
         image = "tarot_redo_11-Justice.jpg",
         suit = "major",
         ordinal = 11,
-        title = "XI Justice",
+        title = "Justice",
         meaning = "Justice, karma, consequence, accountability, law, truth, honesty, integrity, cause and effect\n" ..
             "Judgement will be made fairly and accordingly\n" ..
             "If you have been wronged, this card's appearance may bring you relief\n" ..
@@ -189,7 +189,7 @@ tarot_redo.deck = {
         image = "tarot_redo_12-TheHangedMan.jpg",
         suit = "major",
         ordinal = 12,
-        title = "XII The Hanged Man",
+        title = "The Hanged Man",
         meaning = "Sacrifice, waiting, uncertainty, lack of direction, perspective, contemplation\n" ..
             "Hanging man is positioned there by his own free will (serene expression)\n" ..
             "His position is a sacrifice that needs to be made in order to progress forward, the time spent here will not be wasted\n" ..
@@ -203,7 +203,7 @@ tarot_redo.deck = {
         image = "tarot_redo_13-Death.jpg",
         suit = "major",
         ordinal = 13,
-        title = "XIII Death",
+        title = "Death",
         meaning = "Transformation, endings, change, transition, letting go, release\n" ..
             "A major phase in your life is ending, and a new one is going to start\n" ..
             "Place the past behind you to focus your energy on what is ahead\n" ..
@@ -215,7 +215,7 @@ tarot_redo.deck = {
         image = "tarot_redo_14-Temperance.jpg",
         suit = "major",
         ordinal = 14,
-        title = "XIV Temperance",
+        title = "Temperance",
         meaning = "Balance, peace, patience, moderation, calm, tranquility, harmony, serenity\n" ..
             "Two cups mixing -  flow between super and subconscious minds, unity and infinity\n" ..
             "Not letting things get to you\n" ..
@@ -231,7 +231,7 @@ tarot_redo.deck = {
         image = "tarot_redo_15-TheDevil.jpg",
         suit = "major",
         ordinal = 15,
-        title = "XV The Devil",
+        title = "The Devil",
         meaning = "Oppression, addiction, obsession, dependency, excess, powerlessness, limitations\n" ..
             "You have feelings of entrapment, emptiness and lack of fulfillment in your life\n" ..
             "You are a slave to materialism and opulence, you want to indulge in luxurious living\n" ..
@@ -242,7 +242,7 @@ tarot_redo.deck = {
         image = "tarot_redo_16-TheTower.jpg",
         suit = "major",
         ordinal = 16,
-        title = "XVI The Tower",
+        title = "The Tower",
         meaning = "Disaster, destruction, upheaval, trauma, sudden change, chaos\n" ..
             "Radical and momentous change\n" ..
             "Our old truths/beliefs are no longer useful\n" ..
@@ -254,7 +254,7 @@ tarot_redo.deck = {
         image = "tarot_redo_17-TheStar.jpg",
         suit = "major",
         ordinal = 17,
-        title = "XVII The Star",
+        title = "The Star",
         meaning = "Hope, inspiration, positivity, faith, renewal, healing, rejuvenation\n" ..
             "Hope, renewed power, and strength to carry on with life\n" ..
             "Shows abundant blessings from the universe\n" ..
@@ -266,7 +266,7 @@ tarot_redo.deck = {
         image = "tarot_redo_18-TheMoon.jpg",
         suit = "major",
         ordinal = 18,
-        title = "XVIII The Moon",
+        title = "The Moon",
         meaning = "Illusion, intuition, uncertainty, confusion, complexity, secrets, unconscious\n" ..
             "Wolf and dog - wild, feral nature and civilised nature\n" ..
             "Dual possibilities\n" ..
@@ -281,7 +281,7 @@ tarot_redo.deck = {
         image = "tarot_redo_19-TheSun.jpg",
         suit = "major",
         ordinal = 19,
-        title = "XIX The Sun",
+        title = "The Sun",
         meaning = "Happiness, success, optimism, vitality, joy, confidence, happiness, truth\n" ..
             "Represents the dawn following the darkest nights\n" ..
             "Represents life energy itself\n" ..
@@ -301,7 +301,7 @@ tarot_redo.deck = {
         image = "tarot_redo_20-Judgement.jpg",
         suit = "major",
         ordinal = 20,
-        title = "XX Judgement",
+        title = "Judgement",
         meaning = "Self-evaluation, awakening, renewal, purpose, reflection, reckoning\n" ..
             "Reflection and evaluation of ourselves and our actions\n" ..
             "You are coming close to a significant point in your life where you must start to evaluate yourself\n" ..
@@ -316,7 +316,7 @@ tarot_redo.deck = {
         image = "tarot_redo_21-TheWorld.jpg",
         suit = "major",
         ordinal = 21,
-        title = "XXI The World",
+        title = "The World",
         meaning = "Completion, achievement, fulfilment, sense of belonging, wholeness, harmony\n" ..
             "Ever-changing, dynamic, and eternal fulfilment and unity\n" ..
             "Encountering a great unity and wholeness\n" ..
@@ -343,7 +343,7 @@ tarot_redo.deck = {
         image = "tarot_redo_Wands02.jpg",
         suit = "wands",
         ordinal = 2,
-        title = "2 of Wands",
+        title = "Two of Wands",
         meaning = "Planning, first steps, making decisions, leaving comfort zone, taking risks\n" ..
             "You have turned an idea into a plan, now you have to progress\n" ..
             "Yearning for something else\n" ..
@@ -355,7 +355,7 @@ tarot_redo.deck = {
         image = "tarot_redo_Wands03.jpg",
         suit = "wands",
         ordinal = 3,
-        title = "3 of Wands",
+        title = "Three of Wands",
         meaning = "Momentum, confidence, expansion, growth, foresight, looking ahead\n" ..
             "The progression from 2 Wands\n" ..
             "The decision to head out on your own\n" ..
@@ -367,7 +367,7 @@ tarot_redo.deck = {
         image = "tarot_redo_Wands04.jpg",
         suit = "wands",
         ordinal = 4,
-        title = "4 of Wands",
+        title = "Four of Wands",
         meaning = "Community, home, celebrations, reunions, parties, gatherings, stability, belonging\n" ..
             "Evaluate your definition of home\n" ..
             "A position of stability and grounding\n" ..
@@ -378,7 +378,7 @@ tarot_redo.deck = {
         image = "tarot_redo_Wands05.jpg",
         suit = "wands",
         ordinal = 5,
-        title = "5 of Wands",
+        title = "Five of Wands",
         meaning = "Conflict, competition, arguments, aggression, tension, rivals, clashes of ego\n" ..
             "Some kind of disagreement, conflict or good-natured rivalry\n" ..
             "Only want to be heard, not listen\n" ..
@@ -390,7 +390,7 @@ tarot_redo.deck = {
         image = "tarot_redo_Wands06.jpg",
         suit = "wands",
         ordinal = 6,
-        title = "6 of Wands",
+        title = "Six of Wands",
         meaning = "Success, victory, triumph, rewards, recognition, praise, acclaim, pride\n" ..
             "Evaluate how you define success\n" ..
             "You have gotten through the confusion of 5W, but remember that your struggles are not over (7W)\n" ..
@@ -401,7 +401,7 @@ tarot_redo.deck = {
         image = "tarot_redo_Wands07.jpg",
         suit = "wands",
         ordinal = 7,
-        title = "7 of Wands",
+        title = "Seven of Wands",
         meaning = "Protectiveness, standing up for yourself, defending yourself, protecting territory\n" ..
             "Struggle to maintain position that you have already attained\n" ..
             "Difficulties we face to continue to have success\n" ..
@@ -414,7 +414,7 @@ tarot_redo.deck = {
         image = "tarot_redo_Wands08.jpg",
         suit = "wands",
         ordinal = 8,
-        title = "8 of Wands",
+        title = "Eight of Wands",
         meaning = "Movement, speed, progress, quick decisions, sudden changes, excitement\n" ..
             "Strong level of energy\n" ..
             "Allow events to take their course\n" ..
@@ -426,7 +426,7 @@ tarot_redo.deck = {
         image = "tarot_redo_Wands09.jpg",
         suit = "wands",
         ordinal = 9,
-        title = "9 of Wands",
+        title = "Nine of Wands",
         meaning = "Last stand, persistence, grit, resilience, perseverance, close to success, fatigue\n" ..
             "Won many battles (upright wands), but there are still more trials\n" ..
             "Hope and encouragement that you should face your trials with courage to attain success\n" ..
@@ -437,7 +437,7 @@ tarot_redo.deck = {
         image = "tarot_redo_Wands10.jpg",
         suit = "wands",
         ordinal = 10,
-        title = "10 of Wands",
+        title = "Ten of Wands",
         meaning = "Burden, responsibility, duty, stress, obligation, burning out, struggles\n" ..
             "Need to prioritise to ensure you remain in control\n" ..
             "Understand you cannot solve everything, and share the burden\n" ..
@@ -506,7 +506,7 @@ tarot_redo.deck = {
         image = "tarot_redo_Cups02.jpg",
         suit = "cups",
         ordinal = 2,
-        title = "2 of Cups",
+        title = "Two of Cups",
         meaning = "Unity, partnership, attraction, connection, close bonds, joining forces, mutual respect\n" ..
             "Relinquish the projections and distortions about others \n" ..
             "Partnership, balanced with a strong connection\n" ..
@@ -518,7 +518,7 @@ tarot_redo.deck = {
         image = "tarot_redo_Cups03.jpg",
         suit = "cups",
         ordinal = 3,
-        title = "3 of Cups",
+        title = "Three of Cups",
         meaning = "Friendship, community, gatherings, celebrations, group events, social events\n" ..
             "A period of happiness, forget your worries and spend quality time with family and friends\n" ..
             "Contribute to and reinforce the well-being of others\n" ..
@@ -529,7 +529,7 @@ tarot_redo.deck = {
         image = "tarot_redo_Cups04.jpg",
         suit = "cups",
         ordinal = 4,
-        title = "4 of Cups",
+        title = "Four of Cups",
         meaning = "Apathy, contemplation, feeling disconnected, melancholy, boredom, indifference, discontent\n" ..
             "Failure to listen and be receptive\n" ..
             "Tendency to take things for granted, making it hard to see what treasures the universe presents to us\n" ..
@@ -542,7 +542,7 @@ tarot_redo.deck = {
         image = "tarot_redo_Cups05.jpg",
         suit = "cups",
         ordinal = 5,
-        title = "5 of Cups",
+        title = "Five of Cups",
         meaning = "Loss, grief, disappointment, sadness, mourning, discontent, feeling let down\n" ..
             "Mourning over lost cups and doesn't notice ones still standing\n" ..
             "So caught up in your past that you are incapable of moving on\n" ..
@@ -554,7 +554,7 @@ tarot_redo.deck = {
         image = "tarot_redo_Cups06.jpg",
         suit = "cups",
         ordinal = 6,
-        title = "6 of Cups",
+        title = "Six of Cups",
         meaning = "Nostalgia, memories, familiarity, healing, comfort, sentimentality, pleasure\n" ..
             "Generosity, naïve happiness and childhood\n" ..
             "You want to return to a happier time\n" ..
@@ -568,7 +568,7 @@ tarot_redo.deck = {
         image = "tarot_redo_Cups07.jpg",
         suit = "cups",
         ordinal = 7,
-        title = "7 of Cups",
+        title = "Seven of Cups",
         meaning = "Choices, searching for purpose, illusion, fantasy, daydreaming, wishful thinking, indecision\n" ..
             "Consider the many alternative endings, positive or negative\n" ..
             "Be careful of wishful thinking and be alert of the choices you must make\n" ..
@@ -579,7 +579,7 @@ tarot_redo.deck = {
         image = "tarot_redo_Cups08.jpg",
         suit = "cups",
         ordinal = 8,
-        title = "8 of Cups",
+        title = "Eight of Cups",
         meaning = "Abandonment, walking away, letting go, searching for truth, leaving behind\n" ..
             "Time for change or transition by walking away from something\n" ..
             "You have all the resources you need to embark on your journey. you don't need the 8 cups\n" ..
@@ -592,7 +592,7 @@ tarot_redo.deck = {
         image = "tarot_redo_Cups09.jpg",
         suit = "cups",
         ordinal = 9,
-        title = "9 of Cups",
+        title = "Nine of Cups",
         meaning = "Wishes coming true, contentment, satisfaction, success, achievement, recognition, pleasure\n" ..
             "Self-satisfaction after a long journey\n" ..
             "Consider what you truly desire\n" ..
@@ -604,7 +604,7 @@ tarot_redo.deck = {
         image = "tarot_redo_Cups10.jpg",
         suit = "cups",
         ordinal = 10,
-        title = "10 of Cups",
+        title = "Ten of Cups",
         meaning = "Happiness, homecomings, fulfillment, emotional stability, security, domestic harmony\n" ..
             "Emotional fulfillment: being able to experience the full spectrum of emotions\n" ..
             "Be thankful for your blessings\n" ..
@@ -669,7 +669,7 @@ tarot_redo.deck = {
         image = "tarot_redo_Swords02.jpg",
         suit = "swords",
         ordinal = 2,
-        title = "2 of Swords",
+        title = "Two of Swords",
         meaning = "Stalemate, difficult choices, stuck in the middle, denial, hidden information\n" ..
             "Avoid indecision\n" ..
             "Determine which thoughts you will give weight to\n" ..
@@ -681,7 +681,7 @@ tarot_redo.deck = {
         image = "tarot_redo_Swords03.jpg",
         suit = "swords",
         ordinal = 3,
-        title = "3 of Swords",
+        title = "Three of Swords",
         meaning = "Heartbreak, separation, sadness, grief, sorrow, upset, loss, trauma, tears\n" ..
             "You can minimise your pain by thinking logically\n" ..
             "Choose the head over the heart\n" ..
@@ -692,7 +692,7 @@ tarot_redo.deck = {
         image = "tarot_redo_Swords04.jpg",
         suit = "swords",
         ordinal = 4,
-        title = "4 of Swords",
+        title = "Four of Swords",
         meaning = "Rest, relaxation, peace, sanctuary, recuperation, self-protection, rejuvenation\n" ..
             "It is time to retreat and rest\n" ..
             "Learn to sit with your emotions\n" ..
@@ -705,7 +705,7 @@ tarot_redo.deck = {
         image = "tarot_redo_Swords05.jpg",
         suit = "swords",
         ordinal = 5,
-        title = "5 of Swords",
+        title = "Five of Swords",
         meaning = "Arguments, disputes, aggression, bullying, intimidation, conflict, hostility, stress\n" ..
             "View experiences of revocation, dishonour, and loss as opportunities for growth\n" ..
             "You believed it was more important to be right\n" ..
@@ -716,7 +716,7 @@ tarot_redo.deck = {
         image = "tarot_redo_Swords06.jpg",
         suit = "swords",
         ordinal = 6,
-        title = "6 of Swords",
+        title = "Six of Swords",
         meaning = "Moving on, departure, leaving behind, distance, accepting lessons\n" ..
             "Regretful, unhappy transition - most likely resulting from decision you made in the past\n" ..
             "You must remember that moving on is the ideal option for your future\n" ..
@@ -728,7 +728,7 @@ tarot_redo.deck = {
         image = "tarot_redo_Swords07.jpg",
         suit = "swords",
         ordinal = 7,
-        title = "7 of Swords",
+        title = "Seven of Swords",
         meaning = "Lies, trickery, scheming, strategy, resourcefulness, sneakiness, cunning (the fox card)\n" ..
             "Recognise your personal biases and don't allow them to distract you\n" ..
             "You or someone in your life is having difficulty getting away with something\n" ..
@@ -739,7 +739,7 @@ tarot_redo.deck = {
         image = "tarot_redo_Swords08.jpg",
         suit = "swords",
         ordinal = 8,
-        title = "8 of Swords",
+        title = "Eight of Swords",
         meaning = "Trapped, restricted, victimised, paralysed, helpless, powerless, imprisonment\n" ..
             "You feel powerless because, in your mind, you feel that you can't change your situation\n" ..
             "Honestly appraise your psychological experiences and how they restrict you\n" ..
@@ -751,7 +751,7 @@ tarot_redo.deck = {
         image = "tarot_redo_Swords09.jpg",
         suit = "swords",
         ordinal = 9,
-        title = "9 of Swords",
+        title = "Nine of Swords",
         meaning = "Fear, anxiety, negativity, breaking point, despair, nightmares, isolation\n" ..
             "Things that worry you and keep you up at night\n" ..
             "We escalate into 9S when we are never released from the entrapment of 8S\n" ..
@@ -763,7 +763,7 @@ tarot_redo.deck = {
         image = "tarot_redo_Swords10.jpg",
         suit = "swords",
         ordinal = 10,
-        title = "10 of Swords",
+        title = "Ten of Swords",
         meaning = "Ruin, failure, bitterness, collapse, exhaustion, dead end, victimisation, betrayal\n" ..
             "Do not allow your thoughts to pin you down\n" ..
             "Take stock of all resentments, fears, grudges, and weapons formed against you to clear the backlog and release yourself",
@@ -832,7 +832,7 @@ tarot_redo.deck = {
         image = "tarot_redo_Pentacles02.jpg",
         suit = "pentacles",
         ordinal = 2,
-        title = "2 of Pentacles",
+        title = "Two of Pentacles",
         meaning = "Balancing resources, adaptation, resourcefulness, flexibility, stretching resources\n" ..
             "You are trying to keep aspects of your life in balance\n" ..
             "You are able to adapt well to all the changes that you need to continually re-balance\n" ..
@@ -843,7 +843,7 @@ tarot_redo.deck = {
         image = "tarot_redo_Pentacles03.jpg",
         suit = "pentacles",
         ordinal = 3,
-        title = "3 of Pentacles",
+        title = "Three of Pentacles",
         meaning = "Teamwork, shared goals, collaboration, apprenticeship, effort, pooling energy\n" ..
             "The coming together of different kinds of knowledge to build something common\n" ..
             "Do not ignore the talents of those around you\n" ..
@@ -855,7 +855,7 @@ tarot_redo.deck = {
         image = "tarot_redo_Pentacles04.jpg",
         suit = "pentacles",
         ordinal = 4,
-        title = "4 of Pentacles",
+        title = "Four of Pentacles",
         meaning =
             "Possessiveness, insecurity, hoarding, stinginess, stability, security, savings, materialism, wealth, frugality, boundaries, guardedness\n" ..
             "Can't move while guarding the coins - restrained from action because you are holding onto your possessions too tightly\n" ..
@@ -870,7 +870,7 @@ tarot_redo.deck = {
         image = "tarot_redo_Pentacles05.jpg",
         suit = "pentacles",
         ordinal = 5,
-        title = "5 of Pentacles",
+        title = "Five of Pentacles",
         meaning =
             "Hardship, loss, isolation, feeling abandoned, adversity, struggle, unemployment, alienation, disgrace\n" ..
             "Suggests a time of hardship and insecurity\n" ..
@@ -882,7 +882,7 @@ tarot_redo.deck = {
         image = "tarot_redo_Pentacles06.jpg",
         suit = "pentacles",
         ordinal = 6,
-        title = "6 of Pentacles",
+        title = "Six of Pentacles",
         meaning = "Generosity, charity, community, material help, support, sharing, giving and receiving, gratitude\n" ..
             "You have a good relationship with your income - balance between income and expenses\n" ..
             "You can share your wealth with others, but don't give more than you have\n" ..
@@ -894,7 +894,7 @@ tarot_redo.deck = {
         image = "tarot_redo_Pentacles07.jpg",
         suit = "pentacles",
         ordinal = 7,
-        title = "7 of Pentacles",
+        title = "Seven of Pentacles",
         meaning = "Harvest, rewards, results, growth, progress, perseverance, patience, planning\n" ..
             "Investment and effort\n" ..
             "Evaluate what you are willing and able to invest in\n" ..
@@ -907,7 +907,7 @@ tarot_redo.deck = {
         image = "tarot_redo_Pentacles08.jpg",
         suit = "pentacles",
         ordinal = 8,
-        title = "8 of Pentacles",
+        title = "Eight of Pentacles",
         meaning =
             "Skill, talent, craftsmanship, quality, high standards, expertise, mastery, commitment, dedication, accomplishment\n" ..
             "Town in background - you have isolated yourself from distractions to fully concentrate on the task at hand\n" ..
@@ -918,7 +918,7 @@ tarot_redo.deck = {
         image = "tarot_redo_Pentacles09.jpg",
         suit = "pentacles",
         ordinal = 9,
-        title = "9 of Pentacles",
+        title = "Nine of Pentacles",
         meaning = "Rewarded efforts, success, achievement, independence, leisure, material security, self-sufficiency\n" ..
             "You are confident, independent and self-sufficient\n" ..
             "Through hard work you are now ready to enjoy money, leisure and material comfort\n" ..
@@ -931,7 +931,7 @@ tarot_redo.deck = {
         image = "tarot_redo_Pentacles10.jpg",
         suit = "pentacles",
         ordinal = 10,
-        title = "10 of Pentacles",
+        title = "Ten of Pentacles",
         meaning =
             "Legacy, roots, family, ancestry, inheritance, windfall, foundations, privilege, affluence, stability, tradition\n" ..
             "Diversity, plurality, connection\n" ..
