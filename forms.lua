@@ -53,9 +53,12 @@ end
 function tarot_redo.populate_right_pane(player, ctx, right_pane_def)
     local page = ctx.page or "major"
 
-    local cat_entry = tarot_redo.catalog[page]
-
-    return tarot_redo.populate_suit_page(player, cat_entry, right_pane_def)
+    if page == "card" then
+        return tarot_redo.populate_card_page(player, ctx, right_pane_def)
+    else
+        local cat_entry = tarot_redo.catalog[page]
+        return tarot_redo.populate_suit_page(player, cat_entry, right_pane_def)
+    end
 end
 
 function tarot_redo.populate_suit_page(player, cat_entry, right_pane_def)
@@ -88,13 +91,83 @@ function tarot_redo.populate_suit_page(player, cat_entry, right_pane_def)
         local defs = {}
 
         for c, card in ipairs(row) do
-            local card_id = string.format("card_%s_%d", card.suit, card.ordinal)
+            local card_id = tarot_redo.card_to_id(card)
             table.insert(defs, gui.ImageButton {
                 texture_name = card.image,
                 w = card_w,
                 h = card_h,
+                on_event = function(player, ctx)
+                    ctx.cur_card = card_id
+                    ctx.page = "card"
+                    return true
+                end,
             })
         end
         table.insert(right_pane_def, gui.HBox(defs))
     end
+end
+
+function tarot_redo.populate_card_page(player, ctx, right_pane_def)
+    local card_id = ctx.cur_card
+
+    if not card_id then
+        table.insert(right_pane_def, gui.Label {
+            label = S("Select a card to show details."),
+        })
+        return
+    end
+
+    local card = tarot_redo.id_to_card[card_id]
+    if not card then
+        table.insert(right_pane_def, gui.Label {
+            label = string.format(S("Unknown card: %s"), card_id)
+        })
+        return
+    end
+
+    local card_w = right_pane_def.min_w / 3
+    local card_h = card_w / 300 * 527 -- Keep the aspect ratio
+
+    local card_image = gui.Image {
+        texture_name = card.image,
+        w = card_w,
+        h = card_h,
+    }
+
+    local description_rows = {
+    }
+
+    local rest_w = right_pane_def.min_w - card_w
+
+    table.insert(description_rows, gui.Label {
+        w = rest_w,
+        label = card.title,
+    })
+
+    table.insert(description_rows, gui.Label {
+        w = rest_w,
+        label = string.format("Suit: %s", tarot_redo.catalog[card.suit].title)
+    })
+
+    table.insert(description_rows, gui.Label {
+        w = rest_w,
+        label = "Meanings:"
+    })
+
+    table.insert(description_rows, gui.Label {
+        w = rest_w,
+        label = card.meaning,
+    })
+
+    table.insert(description_rows, gui.Label {
+        w = rest_w,
+        label = string.format("Answer: %s", card.answer)
+    })
+
+    local description = gui.VBox(description_rows)
+    local hlayout = gui.HBox {
+        card_image,
+        description,
+    }
+    table.insert(right_pane_def, hlayout)
 end

@@ -19,6 +19,14 @@ for _, suit in ipairs(tarot_redo.suits) do
     tarot_redo.catalog[suit.id] = cat_entry
 end
 
+function tarot_redo.card_to_id(card)
+    return card.suit .. tostring(card.ordinal)
+end
+
+tarot_redo.id_to_card = {}
+
 for _, card in ipairs(tarot_redo.deck) do
     tarot_redo.catalog[card.suit].cards[card.ordinal] = card
+    local card_id = tarot_redo.card_to_id(card)
+    tarot_redo.id_to_card[card_id] = card
 end
