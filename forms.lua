@@ -11,10 +11,12 @@ tarot_redo.form_configs = {
 }
 
 local my_gui = flow.make_gui(function(player, ctx)
-    local tab_bar_items = {}
+    local tab_bar_def = {
+        min_w = 3,
+    }
 
     for _, suit in ipairs(tarot_redo.suits) do
-        table.insert(tab_bar_items, gui.Button {
+        table.insert(tab_bar_def, gui.Button {
             label = suit.title,
             on_event = function(player, ctx)
                 ctx.page = suit.id
@@ -23,11 +25,24 @@ local my_gui = flow.make_gui(function(player, ctx)
         })
     end
 
-    local tab_bar = gui.VBox(tab_bar_items)
+    local tab_bar = gui.VBox(tab_bar_def)
+
+    local page = ctx.page or "major"
+
+    local right_pane_def = {
+        name = "right_pane_" .. page, -- Each page has different scroll position.
+        min_w = 13,
+    }
+
+    tarot_redo.populate_right_pane(player, ctx, right_pane_def)
+
+    local right_pane = gui.ScrollableVBox(right_pane_def)
 
     return gui.HBox {
+        min_w = 16,
+        min_h = 10,
         tab_bar,
-        tarot_redo.get_right_page(player, ctx),
+        right_pane,
     }
 end)
 
@@ -35,20 +50,22 @@ function tarot_redo.open_main_ui(player)
     my_gui:show(player)
 end
 
-function tarot_redo.get_right_page(player, ctx)
+function tarot_redo.populate_right_pane(player, ctx, right_pane_def)
     local page = ctx.page or "major"
 
     local cat_entry = tarot_redo.catalog[page]
 
-    return tarot_redo.get_suit_page(player, cat_entry)
+    return tarot_redo.populate_suit_page(player, cat_entry, right_pane_def)
 end
 
-function tarot_redo.get_suit_page(player, cat_entry)
-    local elements = {
-        gui.Label {
-            label = cat_entry.title
-        },
-    }
+function tarot_redo.populate_suit_page(player, cat_entry, right_pane_def)
+    table.insert(right_pane_def, gui.Label {
+        label = cat_entry.title
+    })
+
+    table.insert(right_pane_def, gui.Label {
+        label = S("Click a card to show details."),
+    })
 
     local rows = {}
     local cur_row = nil
@@ -64,23 +81,20 @@ function tarot_redo.get_suit_page(player, cat_entry)
         table.insert(cur_row, card)
     end
 
+    local card_w = right_pane_def.min_w / cards_per_row
+    local card_h = card_w / 300 * 527 -- Keep the aspect ratio
+
     for _, row in ipairs(rows) do
         local defs = {}
+
         for c, card in ipairs(row) do
             local card_id = string.format("card_%s_%d", card.suit, card.ordinal)
             table.insert(defs, gui.ImageButton {
                 texture_name = card.image,
-                -- label = card.title,
-                w = 2 * 300 / 527,
-                h = 2,
+                w = card_w,
+                h = card_h,
             })
         end
-        table.insert(elements, gui.HBox(defs))
+        table.insert(right_pane_def, gui.HBox(defs))
     end
-
-    table.insert(elements, gui.Label {
-        label = "end",
-    })
-
-    return gui.VBox(elements)
 end
