@@ -2,11 +2,15 @@
 local path = core.get_modpath(core.get_current_modname()) .. "/"
 local S = core.get_translator and core.get_translator("tarot_redo")
 
-tarot_redo = {}
+tarot_redo = {
+    image_w = 300,
+    image_h = 527,
+}
 
 dofile(path .. "dictionary.lua")
 dofile(path .. "catalog.lua")
 dofile(path .. "forms.lua")
+dofile(path .. "nodes.lua")
 dofile(path .. "crafts.lua")
 
 local function has_value (array, val)
