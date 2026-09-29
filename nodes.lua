@@ -27,6 +27,14 @@ local card_texture_prefix = string.format(
 
 local card_back_image = "tarot_redo_CardBacks.jpg"
 
+function tarot_redo.id_to_node_name(card_id)
+    return "tarot_redo:tarot_card_" .. card_id
+end
+
+function tarot_redo.card_to_node_name(card)
+    return tarot_redo.id_to_node_name(tarot_redo.card_to_id(card))
+end
+
 function tarot_redo.make_tarot_card_node_def(card)
     local description = "Tarot Card: " .. card.title
     local front_texture = card_texture_prefix .. card.image
@@ -63,9 +71,7 @@ function tarot_redo.make_tarot_card_node_def(card)
 end
 
 for _, card in ipairs(tarot_redo.deck) do
-    local card_id = tarot_redo.card_to_id(card)
-
-    core.register_node("tarot_redo:tarot_card_" .. card_id,
+    core.register_node(tarot_redo.card_to_node_name(card),
         tarot_redo.make_tarot_card_node_def(card)
     )
 end
