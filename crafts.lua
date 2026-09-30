@@ -2,6 +2,10 @@ local S = core.get_translator and core.get_translator("tarot_redo")
 
 core.register_tool("tarot_redo:tarot_book", {
 	description = S("Tarot Book"),
+	_tt_help = table.concat({
+		S("A reference book for Tarot cards."),
+		S("Use to open the Tarot Guide user interface."),
+	}, "\n"),
 	inventory_image = "tarot_redo_tarot_book.png",
 	stack_max = 1,
 	on_use = function(itemstack, player, pointed_thing)
@@ -21,6 +25,12 @@ end
 
 core.register_craftitem("tarot_redo:tarot_card", {
 	description = S("Tarot Card"),
+	_tt_help = table.concat({
+		S("This is a deck of Rider Waite Smith Tarot cards"),
+		S("Max stack: 78, i.e. total number of Tarot cards."),
+		S("Can be placed in the world and become a random Tarot card."),
+		S("Can dig placed Tarot cards to collect them back to the deck."),
+	}, "\n"),
 	inventory_image = "tarot_redo_card_ico.png",
 	stack_max = #tarot_redo.deck, -- We all know how many cards a Tarot deck has. :)
 	on_place = function(itemstack, player, pointed_thing)
