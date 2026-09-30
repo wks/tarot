@@ -176,3 +176,12 @@ core.register_craft({
 		{ "default:paper", "dye:blue",      "dye:violet" },
 	}
 })
+
+core.register_craft({
+	output = "tarot_redo:tarot_book",
+	recipe = {
+		{ "dye:red",    "dye:green",    "" },
+		{ "dye:yellow", "default:book", "dye:black" },
+		{ "",           "dye:blue",     "dye:violet" },
+	}
+})
