@@ -1,19 +1,15 @@
 local S = core.get_translator and core.get_translator("tarot_redo")
 
-core.register_tool("tarot_redo:deck", {
-	description = S("A Rider Waite Tarot deck"),
-	inventory_image = "tarot_redo_card_ico.png",
+core.register_tool("tarot_redo:tarot_book", {
+	description = S("Tarot Book"),
+	inventory_image = "tarot_redo_tarot_book.png",
 	stack_max = 1,
 	on_use = function(itemstack, player, pointed_thing)
 		if not player then
 			return
 		end
-
-		local name = player:get_player_name()
-		if name then tarot_redo.open_main_ui(player) end
+		tarot_redo.open_main_ui(player)
 	end,
-
-	sound = { breaks = "default_tool_breaks" },
 })
 
 local function is_on_rightclick_suppressed(player)
