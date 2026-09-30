@@ -17,7 +17,7 @@ core.register_tool("tarot_redo:deck", {
 })
 
 core.register_craftitem("tarot_redo:tarot_card", {
-	description = S("A Tarot Card"),
+	description = S("Tarot Card"),
 	inventory_image = "tarot_redo_card_ico.png",
 	stack_max = #tarot_redo.deck, -- We all know how many cards a Tarot deck has. :)
 	on_place = function(itemstack, player, pointed_thing)
@@ -31,6 +31,30 @@ core.register_craftitem("tarot_redo:tarot_card", {
 
 		return itemstack
 	end,
+
+	on_use = function(itemstack, player, pointed_thing)
+		if pointed_thing.type ~= "node" then return end
+
+		local under = pointed_thing.under
+		local node = core.get_node(under)
+
+		if core.get_item_group(node.name, "tarot_card") > 0 then
+			-- Collect the Tarot card node into the inventory
+			-- as a non-node tarot_card item.
+			local new_stack = ItemStack(itemstack:get_name())
+			local inv = player:get_inventory()
+			if inv:room_for_item("main", new_stack) then
+				inv:add_item("main", new_stack)
+				core.remove_node(under)
+			else
+				core.chat_send_player(player:get_player_name(), "Inventory full.")
+			end
+
+			-- Don't return itemstack.
+			-- New items may have been added to is by add_item.
+			-- Returning itemstack will undo the adding.
+		end
+	end
 })
 
 --
