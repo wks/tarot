@@ -1,9 +1,12 @@
+local modname = core.get_current_modname()
+local S = core.get_translator(modname)
+
 tarot_redo.suits = {
-    { id = "major",     title = "Major Arcana", first = 0, last = 21 },
-    { id = "wands",     title = "Wands",        first = 1, last = 14 },
-    { id = "cups",      title = "Cups",         first = 1, last = 14 },
-    { id = "swords",    title = "Swords",       first = 1, last = 14 },
-    { id = "pentacles", title = "Pentacles",    first = 1, last = 14 },
+    { id = "major",     title = S("Major Arcana"), first = 0, last = 21 },
+    { id = "wands",     title = S("Wands"),        first = 1, last = 14 },
+    { id = "cups",      title = S("Cups"),         first = 1, last = 14 },
+    { id = "swords",    title = S("Swords"),       first = 1, last = 14 },
+    { id = "pentacles", title = S("Pentacles"),    first = 1, last = 14 },
 }
 
 tarot_redo.catalog = {}

@@ -1,4 +1,5 @@
-local S = core.get_translator("tarot_redo")
+local modname = core.get_current_modname()
+local S = core.get_translator(modname)
 
 -- The dimensions of a tarot card node,
 -- as if it is placed on the ground towards north.

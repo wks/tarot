@@ -1,4 +1,5 @@
-local S = core.get_translator and core.get_translator("tarot_redo")
+local modname = core.get_current_modname()
+local S = core.get_translator(modname)
 
 core.register_tool("tarot_redo:tarot_book", {
 	description = S("Tarot Book"),
