@@ -9,6 +9,7 @@ tarot_redo = {
 dofile(path .. "dictionary.lua")
 dofile(path .. "catalog.lua")
 dofile(path .. "forms.lua")
+dofile(path .. "placement.lua")
 dofile(path .. "nodes.lua")
 dofile(path .. "crafts.lua")
 

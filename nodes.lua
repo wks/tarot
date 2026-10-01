@@ -77,6 +77,9 @@ function tarot_redo.make_tarot_card_node_def(card)
             type = "fixed",
             fixed = tarot_node_box,
         },
+        on_place = function(itemstack, player, pointed_thing)
+            return tarot_redo.place_tarot_card(itemstack, player, pointed_thing)
+        end,
     }
 end
 
