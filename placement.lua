@@ -1,3 +1,10 @@
+local function is_on_rightclick_suppressed(player)
+	if not player or not player:is_player() then return false end
+	local control = player:get_player_control()
+	-- It is hard to use sneak if the player can fly, so we include aux1.
+	return control.sneak or control.aux1
+end
+
 function tarot_redo.place_tarot_card(itemstack, player, pointed_thing)
     if pointed_thing.type ~= "node" then return end
 
@@ -9,7 +16,7 @@ function tarot_redo.place_tarot_card(itemstack, player, pointed_thing)
 
     -- Give it a chance to respond to rightclick.
     if under_def.on_rightclick and not is_on_rightclick_suppressed(player) then
-        return true, under_def.on_rightclick(under_pos, under_node, player, itemstack, pointed_thing)
+        return under_def.on_rightclick(under_pos, under_node, player, itemstack, pointed_thing)
     end
 
     -- Ignore if the node above is not air.

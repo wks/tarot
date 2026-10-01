@@ -17,13 +17,6 @@ core.register_tool("tarot_redo:tarot_book", {
 	end,
 })
 
-local function is_on_rightclick_suppressed(player)
-	if not player or not player:is_player() then return false end
-	local control = placer:get_player_control()
-	-- It is hard to use sneak if the player can fly, so we include aux1.
-	return control.sneak or control.aux1
-end
-
 core.register_craftitem("tarot_redo:tarot_card", {
 	description = S("Tarot Card"),
 	_tt_help = table.concat({
