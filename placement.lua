@@ -1,4 +1,6 @@
 function tarot_redo.place_tarot_card(itemstack, player, pointed_thing)
+    local debug = false
+
     local handled, result = tarot_redo.try_process_rightclick(itemstack, player, pointed_thing)
     if handled then return result end
 
@@ -9,14 +11,18 @@ function tarot_redo.place_tarot_card(itemstack, player, pointed_thing)
     local under_pos = pointed_thing.under
     local under_node = core.get_node_or_nil(under_pos)
     local under_def = under_node and core.registered_nodes[under_node.name]
-    core.debug("under", under_pos, under_node.name)
+    if debug then
+        core.debug("under", under_pos, under_node.name)
+    end
     if not under_def then return end
 
     -- Ignore if the node above is not air.
     -- Tarot cards cannot replace buildable_to nodes.
     local above_pos = pointed_thing.above
     local above_node = core.get_node(above_pos)
-    core.debug("above", above_pos, above_node.name)
+    if debug then
+        core.debug("above", above_pos, above_node.name)
+    end
     if above_node.name ~= "air" then return end
 
     if core.is_protected(above_pos, player:get_player_name()) then return end
@@ -24,11 +30,15 @@ function tarot_redo.place_tarot_card(itemstack, player, pointed_thing)
     local tarot_pos = above_pos
 
     local vec_out = above_pos - under_pos
-    core.debug("vec_out:", vec_out)
+    if debug then
+        core.debug("vec_out:", vec_out)
+    end
 
     local look_dir = player:get_look_dir()
     local look_yaw = player:get_look_horizontal()
-    core.debug("look_dir:", look_dir, "look_yaw:", look_yaw)
+    if debug then
+        core.debug("look_dir:", look_dir, "look_yaw:", look_yaw)
+    end
 
     local facedir = 8
     if vec_out.y > 0 then
@@ -87,7 +97,9 @@ function tarot_redo.place_tarot_card(itemstack, player, pointed_thing)
     else
         -- This should be unreachable.  It is an error if this happens.
         -- Log the error and fall back to 0
-        core.debug("Unexpected vec_out: ", vec_out)
+        if debug then
+            core.debug("Unexpected vec_out: ", vec_out)
+        end
         facedir = 0
     end
 
@@ -133,12 +145,16 @@ local NOT_PART_OF_TABLE = 2
 
 -- Find a contiguous surface that consists of nodes of the same kind.
 function tarot_redo.find_table(above, under)
+    local debug = false
+
     local node_name_under = core.get_node(under).name
 
     local vec_out = above - under
     local v1, v2 = get_perpendicular_vector_basis(vec_out)
 
-    core.debug("under:", under, "vec_out:", vec_out, "v1:", v1, "v2:", v2, "node_name_under:", node_name_under)
+    if debug then
+        core.debug("under:", under, "vec_out:", vec_out, "v1:", v1, "v2:", v2, "node_name_under:", node_name_under)
+    end
 
     -- The radius is the max distance allowed to go in each dimension.
     -- The max table size is 21x21
@@ -175,14 +191,18 @@ function tarot_redo.find_table(above, under)
     local function is_part_of_table(s, t)
         local pos = st_to_pos(s, t)
         local node_name_pos = core.get_node(pos).name
-        core.debug("s:", s, "t:", t, "pos:", pos, "node_name_pos:", node_name_pos)
+        if debug then
+            core.debug("s:", s, "t:", t, "pos:", pos, "node_name_pos:", node_name_pos)
+        end
         return node_name_pos == node_name_under
     end
 
     -- Search from `under`.
     -- We use depth-first search for the ease of implementation.
     -- It doesn't really matter.
-    core.debug("Commencing search...")
+    if debug then
+        core.debug("Commencing search...")
+    end
     local starting_index = st_to_index(0, 0)
     local queue = { starting_index }
 
@@ -196,7 +216,9 @@ function tarot_redo.find_table(above, under)
         local current_index = table.remove(queue)
         local cs, ct = index_to_st(current_index)
 
-        core.debug("Visiting node. current_index:", current_index, "cs:", cs, "ct:", ct)
+        if debug then
+            core.debug("Visiting node. current_index:", current_index, "cs:", cs, "ct:", ct)
+        end
 
         local function try_enqueue(ns, nt)
             if not is_in_bound(ns, nt) then return end
