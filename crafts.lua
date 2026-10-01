@@ -52,6 +52,8 @@ core.register_craftitem("tarot_redo:tarot_card", {
 			-- Don't return itemstack.
 			-- New items may have been added to is by add_item.
 			-- Returning itemstack will undo the adding.
+		else
+			tarot_redo.highlight_table(itemstack, player, pointed_thing)
 		end
 	end
 })
