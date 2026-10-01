@@ -1,3 +1,5 @@
+local S = core.get_translator("tarot_redo")
+
 -- The dimensions of a tarot card node,
 -- as if it is placed on the ground towards north.
 -- hz and hx are half of the z and x edge lengths.
@@ -35,6 +37,12 @@ function tarot_redo.card_to_node_name(card)
     return tarot_redo.id_to_node_name(tarot_redo.card_to_id(card))
 end
 
+local tarot_card_node_tt_help = table.concat({
+    S("A revealed Tarot card.  You already know which card it is."),
+    S("Can be put back to the world as is."),
+    S("Can be converted back to the unrevealed form by crafting."),
+}, "\n")
+
 function tarot_redo.make_tarot_card_node_def(card)
     local description = "Tarot Card: " .. card.title
     local front_texture = card_texture_prefix .. card.image
@@ -42,6 +50,7 @@ function tarot_redo.make_tarot_card_node_def(card)
 
     return {
         description = description,
+        _tt_help = tarot_card_node_tt_help,
         drawtype = "nodebox",
         tiles = {
             front_texture,
@@ -57,7 +66,8 @@ function tarot_redo.make_tarot_card_node_def(card)
         is_ground_content = false,
         groups = {
             tarot_card = 1,
-            snappy = 1,
+            snappy = 3,
+            dig_immediate = 1,
         },
         node_box = {
             type = "fixed",
