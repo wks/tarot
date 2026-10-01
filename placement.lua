@@ -1,11 +1,9 @@
-local function is_on_rightclick_suppressed(player)
-    if not player or not player:is_player() then return false end
-    local control = player:get_player_control()
-    -- It is hard to use sneak if the player can fly, so we include aux1.
-    return control.sneak or control.aux1
-end
-
 function tarot_redo.place_tarot_card(itemstack, player, pointed_thing)
+    local handled, result = tarot_redo.try_process_rightclick(itemstack, player, pointed_thing)
+    if handled then return result end
+
+    if not player or not player:is_player() then return end
+
     if pointed_thing.type ~= "node" then return end
 
     local under_pos = pointed_thing.under
@@ -13,11 +11,6 @@ function tarot_redo.place_tarot_card(itemstack, player, pointed_thing)
     local under_def = under_node and core.registered_nodes[under_node.name]
     core.debug("under", under_pos, under_node.name)
     if not under_def then return end
-
-    -- Give it a chance to respond to rightclick.
-    if under_def.on_rightclick and not is_on_rightclick_suppressed(player) then
-        return under_def.on_rightclick(under_pos, under_node, player, itemstack, pointed_thing)
-    end
 
     -- Ignore if the node above is not air.
     -- Tarot cards cannot replace buildable_to nodes.
@@ -138,6 +131,7 @@ local NOT_VISITED = 0
 local PART_OF_TABLE = 1
 local NOT_PART_OF_TABLE = 2
 
+-- Find a contiguous surface that consists of nodes of the same kind.
 function tarot_redo.find_table(above, under)
     local node_name_under = core.get_node(under).name
 
@@ -237,6 +231,8 @@ function tarot_redo.find_table(above, under)
 end
 
 function tarot_redo.highlight_table(itemstack, player, pointed_thing)
+    if pointed_thing.type ~= "node" then return false end
+
     local vec_out = pointed_thing.above - pointed_thing.under
     local v1, v2 = get_perpendicular_vector_basis(vec_out)
 
@@ -257,11 +253,15 @@ function tarot_redo.highlight_table(itemstack, player, pointed_thing)
             minexptime = 1,
             maxexptime = 2,
             texpool = {
-                { name = "plus.png^[multiply:#ff88ff", alpha = 0.7, },
-                { name = "plus.png^[multiply:#ffccff", alpha = 0.7, },
+                { name = "plus.png^[multiply:#8800ff", alpha = 0.7, },
+                { name = "plus.png^[multiply:#aa44ff", alpha = 0.7, },
+                { name = "plus.png^[multiply:#cc88ff", alpha = 0.7, },
+                { name = "plus.png^[multiply:#eeccff", alpha = 0.7, },
             },
             glow = 14,
             collisiondetection = false,
         })
     end
+
+    return true
 end

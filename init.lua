@@ -6,6 +6,7 @@ tarot_redo = {
     image_h = 527,
 }
 
+dofile(path .. "utils.lua")
 dofile(path .. "dictionary.lua")
 dofile(path .. "catalog.lua")
 dofile(path .. "forms.lua")

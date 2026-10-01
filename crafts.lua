@@ -4,15 +4,35 @@ core.register_tool("tarot_redo:tarot_book", {
 	description = S("Tarot Book"),
 	_tt_help = table.concat({
 		S("A reference book for Tarot cards."),
-		S("Use to open user interface."),
+		S('Press the dig button (left mouse button) on a surface to highlight "table" area.'),
+		S("Press the place button (right mouse button) to open user interface."),
 		S("Note: The UI can also be opened using the '/tarot_ui' chat command."),
 	}, "\n"),
 	inventory_image = "tarot_redo_tarot_book.png",
 	stack_max = 1,
+
 	on_use = function(itemstack, player, pointed_thing)
-		if not player then
-			return
+		if not player or not player:is_player() then return end
+		local player_name = player:get_player_name()
+
+		local highlighted = tarot_redo.highlight_table(itemstack, player, pointed_thing)
+		if highlighted then
+			core.chat_send_player(player_name, S("Table area highlighted."))
+		else
+			core.chat_send_player(player_name, S('Use on a surface to highlight the "table" area.'))
 		end
+	end,
+
+	on_place = function(itemstack, player, pointed_thing)
+		local handled, result = tarot_redo.try_process_rightclick(itemstack, player, pointed_thing)
+		if handled then return result end
+
+		if not player or not player:is_player() then return end
+		tarot_redo.open_main_ui(player)
+	end,
+
+	on_secondary_use = function(itemstack, player, pointed_thing)
+		if not player or not player:is_player() then return end
 		tarot_redo.open_main_ui(player)
 	end,
 })
@@ -26,7 +46,8 @@ core.register_craftitem("tarot_redo:tarot_card", {
 		S("Max stack: @1", #tarot_redo.deck),
 	}, "\n"),
 	inventory_image = "tarot_redo_card_ico.png",
-	stack_max = #tarot_redo.deck, -- We all know how many cards a Tarot deck has. :)
+	stack_max = #tarot_redo.deck, -- We all know how many cards a Tarot deck has. :)\
+
 	on_place = function(itemstack, player, pointed_thing)
 		return tarot_redo.place_tarot_card(itemstack, player, pointed_thing)
 	end,
@@ -52,8 +73,6 @@ core.register_craftitem("tarot_redo:tarot_card", {
 			-- Don't return itemstack.
 			-- New items may have been added to is by add_item.
 			-- Returning itemstack will undo the adding.
-		else
-			tarot_redo.highlight_table(itemstack, player, pointed_thing)
 		end
 	end
 })
