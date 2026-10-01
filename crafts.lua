@@ -4,7 +4,8 @@ core.register_tool("tarot_redo:tarot_book", {
 	description = S("Tarot Book"),
 	_tt_help = table.concat({
 		S("A reference book for Tarot cards."),
-		S("Use to open the Tarot Guide user interface."),
+		S("Use to open user interface."),
+		S("Note: The UI can also be opened using the '/tarot_ui' chat command."),
 	}, "\n"),
 	inventory_image = "tarot_redo_tarot_book.png",
 	stack_max = 1,

@@ -1,4 +1,3 @@
-
 local path = core.get_modpath(core.get_current_modname()) .. "/"
 local S = core.get_translator and core.get_translator("tarot_redo")
 
@@ -13,7 +12,7 @@ dofile(path .. "forms.lua")
 dofile(path .. "nodes.lua")
 dofile(path .. "crafts.lua")
 
-local function has_value (array, val)
+local function has_value(array, val)
     for index, value in ipairs(array) do
         if value == val then
             return true
@@ -32,10 +31,10 @@ local function randomize_cards(name)
     for i = 1, number_of_cards do
         table.insert(t, i)
     end
-    for i = 1, #t*2 do
+    for i = 1, #t * 2 do
         local a = math.random(#t)
         local b = math.random(#t)
-        t[a],t[b] = t[b],t[a]
+        t[a], t[b] = t[b], t[a]
     end
 
     --core.chat_send_all(dump(t))
@@ -58,15 +57,16 @@ end
 function tarot_redo.get_one_card(name, cards_to_ignore)
     cards_to_ignore = cards_to_ignore or {}
     local index = randomize_cards(name)
-    while has_value (cards_to_ignore, index) do
+    while has_value(cards_to_ignore, index) do
         index = randomize_cards(name)
     end
     return index
 end
 
-core.register_chatcommand("select_reading", {
-    params = "",
-    description = S("this command opens the reading menu"),
-    privs = {server = true},
-	func = tarot_redo.select_reading
+core.register_chatcommand("tarot_ui", {
+    description = S("Open the Tarot Book user interface."),
+    func = function(name)
+        local player = core.get_player_by_name(name)
+        tarot_redo.open_main_ui(player)
+    end
 })
