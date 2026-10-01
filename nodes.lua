@@ -63,6 +63,7 @@ function tarot_redo.make_tarot_card_node_def(card)
         inventory_image = front_texture,
         paramtype = "light",
         paramtype2 = "facedir",
+        sunlight_propagates = true,
         is_ground_content = false,
         groups = {
             tarot_card = 1,
