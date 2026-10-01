@@ -1,8 +1,8 @@
 local function is_on_rightclick_suppressed(player)
-	if not player or not player:is_player() then return false end
-	local control = player:get_player_control()
-	-- It is hard to use sneak if the player can fly, so we include aux1.
-	return control.sneak or control.aux1
+    if not player or not player:is_player() then return false end
+    local control = player:get_player_control()
+    -- It is hard to use sneak if the player can fly, so we include aux1.
+    return control.sneak or control.aux1
 end
 
 function tarot_redo.place_tarot_card(itemstack, player, pointed_thing)
@@ -25,6 +25,8 @@ function tarot_redo.place_tarot_card(itemstack, player, pointed_thing)
     local above_node = core.get_node(above_pos)
     core.debug("above", above_pos, above_node.name)
     if above_node.name ~= "air" then return end
+
+    if core.is_protected(above_pos, player:get_player_name()) then return end
 
     local tarot_pos = above_pos
 
