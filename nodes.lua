@@ -47,6 +47,7 @@ function tarot_redo.make_tarot_card_node_def(card)
     local description = "Tarot Card: " .. card.title
     local front_texture = card_texture_prefix .. card.image
     local back_texture = card_texture_prefix .. card_back_image
+    local global_ordinal = card.global_ordinal
 
     return {
         description = description,
@@ -66,7 +67,7 @@ function tarot_redo.make_tarot_card_node_def(card)
         sunlight_propagates = true,
         is_ground_content = false,
         groups = {
-            tarot_card = 1,
+            tarot_card = global_ordinal,
             snappy = 3,
             dig_immediate = 1,
         },

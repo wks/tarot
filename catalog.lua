@@ -30,3 +30,9 @@ for _, card in ipairs(tarot_redo.deck) do
     local card_id = tarot_redo.card_to_id(card)
     tarot_redo.id_to_card[card_id] = card
 end
+
+-- Assign global ordinal to each card.
+-- The global ordinal is just its index in the tarot_redo.deck table.
+for global_ordinal, card in ipairs(tarot_redo.deck) do
+    card.global_ordinal = global_ordinal
+end

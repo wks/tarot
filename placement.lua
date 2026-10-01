@@ -1,3 +1,5 @@
+local S = core.get_translator and core.get_translator("tarot_redo")
+
 function tarot_redo.place_tarot_card(itemstack, player, pointed_thing)
     local debug = false
 
@@ -5,6 +7,8 @@ function tarot_redo.place_tarot_card(itemstack, player, pointed_thing)
     if handled then return result end
 
     if not player or not player:is_player() then return end
+
+    local player_name = player:get_player_name()
 
     if pointed_thing.type ~= "node" then return end
 
@@ -25,7 +29,7 @@ function tarot_redo.place_tarot_card(itemstack, player, pointed_thing)
     end
     if above_node.name ~= "air" then return end
 
-    if core.is_protected(above_pos, player:get_player_name()) then return end
+    if core.is_protected(above_pos, player_name) then return end
 
     local tarot_pos = above_pos
 
@@ -106,7 +110,58 @@ function tarot_redo.place_tarot_card(itemstack, player, pointed_thing)
     local node_name = itemstack:get_name()
     if node_name == "tarot_redo:tarot_card" then
         -- If it is the unrevealed Tarot Card item, draw a concrete card.
-        local random_ordinal = math.random(#tarot_redo.deck)
+        -- Make sure it is different from all cards on the table.
+
+        local tarot_table = tarot_redo.find_table(above_pos, under_pos)
+        local excluded = {}
+        local num_excluded = 0
+        for i = 1, #tarot_redo.deck do
+            excluded[i] = false
+        end
+        for _, table_pos in ipairs(tarot_table) do
+            local above_table_pos = table_pos + vec_out
+            local above_table_node_name = core.get_node(above_table_pos).name
+            local global_ordinal = core.get_node_group(above_table_node_name, "tarot_card")
+            if global_ordinal ~= 0 and not excluded[global_ordinal] then
+                excluded[global_ordinal] = true
+                num_excluded = num_excluded + 1
+                if debug then
+                    core.debug("global_ordinal:", global_ordinal)
+                    local card = tarot_redo.deck[global_ordinal]
+                    core.debug("Card", card.title, "at", above_table_pos, "excludes", global_ordinal, "total excluded",
+                        num_excluded)
+                end
+            end
+        end
+
+        local available = #tarot_redo.deck - num_excluded
+
+        local random_ordinal
+        if available == 0 then
+            core.chat_send_player(player_name,
+                S("WARNING: All Tarot cards can be found on the table.  Drawing at random."))
+            random_ordinal = math.random(#tarot_redo.deck)
+        else
+            if debug then
+                core.debug("Drawing from remaining", available, "available cards")
+            end
+            local available_index = math.random(available)
+            local found_available = 0
+            for i, v in ipairs(excluded) do
+                if not v then
+                    found_available = found_available + 1
+                end
+                if found_available == available_index then
+                    random_ordinal = i
+                    break
+                end
+            end
+            if not random_ordinal then
+                -- This is impossible.  But if this really happens, we fall back to 1 (The Fool).
+                random_ordinal = 1
+            end
+        end
+
         local card = tarot_redo.deck[random_ordinal]
         node_name = tarot_redo.card_to_node_name(card)
     end
