@@ -121,7 +121,7 @@ function tarot_redo.populate_card_page(player, ctx, right_pane_def)
     local card = tarot_redo.id_to_card[card_id]
     if not card then
         table.insert(right_pane_def, gui.Label {
-            label = string.format(S("Unknown card: %s"), card_id)
+            label = S("Unknown card: @1", card_id)
         })
         return
     end
@@ -147,12 +147,12 @@ function tarot_redo.populate_card_page(player, ctx, right_pane_def)
 
     table.insert(description_rows, gui.Label {
         w = rest_w,
-        label = string.format("Suit: %s", tarot_redo.catalog[card.suit].title)
+        label = S("Suit: @1", tarot_redo.catalog[card.suit].title)
     })
 
     table.insert(description_rows, gui.Label {
         w = rest_w,
-        label = "Meanings:"
+        label = S("Meanings:")
     })
 
     table.insert(description_rows, gui.Label {
@@ -162,7 +162,7 @@ function tarot_redo.populate_card_page(player, ctx, right_pane_def)
 
     table.insert(description_rows, gui.Label {
         w = rest_w,
-        label = string.format("Answer: %s", card.answer)
+        label = S("Answer: @1", card.answer)
     })
 
     local description = gui.VBox(description_rows)
