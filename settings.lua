@@ -49,3 +49,11 @@ make_bool_setting("major_arcana_only",
         S("When false, draw cards from the whole deck."),
     }, "\n"),
     false)
+
+make_bool_setting("warn_table_too_large",
+    S("Show warning if the table is too large."),
+    table.concat({
+        S("When true, placing a card on an area that is too large will receive warning and show highlighting."),
+        S("When false, no warning is shown."),
+    }, "\n"),
+    true)

@@ -1,0 +1,4 @@
+# When drawing a card at random, it searches nearby cards to not draw the same card.
+# The radius is the Chebyshev distance from the to-be-placed card to the farthest to be considered.
+# The default value is 25, which is a 51x51 square on the surface centered at the pointed position.
+tarot_redo.dedup_radius (De-duplication radius) int 25 0

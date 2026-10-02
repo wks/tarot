@@ -108,12 +108,16 @@ function tarot_redo.place_tarot_card(itemstack, player, pointed_thing)
         facedir = 0
     end
 
+    local tarot_table, table_too_large
+
     local node_name = itemstack:get_name()
     if node_name == "tarot_redo:tarot_card" then
         -- If it is the unrevealed Tarot Card item, draw a concrete card.
         -- Make sure it is different from all cards on the table.
 
-        local tarot_table = tarot_redo.find_table(above_pos, under_pos)
+        tarot_table, table_too_large = tarot_redo.find_table(above_pos, under_pos)
+        -- We will give "table too large" warning and highlighting after placing card to reduce perceived lag.
+
         local excluded = {}
         local num_excluded = 0
         local total_cards = #tarot_redo.deck
@@ -198,6 +202,12 @@ function tarot_redo.place_tarot_card(itemstack, player, pointed_thing)
 
     itemstack:take_item()
 
+    -- Warn the player after placing card.
+    if table_too_large and tarot_redo.settings_map.warn_table_too_large:get(player) then
+        tarot_redo.warn_table_too_large(player_name, true)
+        tarot_redo.highlight_table_inner(tarot_table, vec_out, true)
+    end
+
     return itemstack
 end
 
@@ -236,8 +246,7 @@ function tarot_redo.find_table(above, under)
     end
 
     -- The radius is the max distance allowed to go in each dimension.
-    -- The max table size is 21x21
-    local radius = 10
+    local radius = tarot_redo.dedup_radius
     local width = radius * 2 + 1
     local array_size = width * width
 
@@ -291,6 +300,8 @@ function tarot_redo.find_table(above, under)
     end
     visited[starting_index] = PART_OF_TABLE
 
+    local found_out_of_bound_block = false
+
     while #queue > 0 do
         local current_index = table.remove(queue)
         local cs, ct = index_to_st(current_index)
@@ -300,7 +311,10 @@ function tarot_redo.find_table(above, under)
         end
 
         local function try_enqueue(ns, nt)
-            if not is_in_bound(ns, nt) then return end
+            if not is_in_bound(ns, nt) and not found_out_of_bound_block then
+                found_out_of_bound_block = true
+                return
+            end
 
             local new_index = st_to_index(ns, nt)
             if visited[new_index] ~= NOT_VISITED then return end
@@ -328,41 +342,69 @@ function tarot_redo.find_table(above, under)
         end
     end
 
-    return result
+    return result, found_out_of_bound_block
 end
 
 function tarot_redo.highlight_table(itemstack, player, pointed_thing)
     if pointed_thing.type ~= "node" then return false end
 
+    local table_poses, table_too_large = tarot_redo.find_table(pointed_thing.above, pointed_thing.under)
     local vec_out = pointed_thing.above - pointed_thing.under
-    local v1, v2 = get_perpendicular_vector_basis(vec_out)
+    tarot_redo.highlight_table_inner(table_poses, vec_out)
 
-    local table_poses = tarot_redo.find_table(pointed_thing.above, pointed_thing.under)
-    for _, pos in ipairs(table_poses) do
-        -- Add particle effect
-        core.add_particlespawner({
-            amount = 20,
-            time = 0.1,
-            pos = {
-                min = pos + vec_out * 0.5 - v1 * 0.5 - v2 * 0.5,
-                max = pos + vec_out * 0.5 + v1 * 0.5 + v2 * 0.5,
-            },
-            minsize = 1,
-            maxsize = 1,
-            minvel = vec_out * 0.05,
-            maxvel = vec_out * 0.1,
-            minexptime = 1,
-            maxexptime = 2,
-            texpool = {
-                { name = "plus.png^[multiply:#8800ff", alpha = 0.7, },
-                { name = "plus.png^[multiply:#aa44ff", alpha = 0.7, },
-                { name = "plus.png^[multiply:#cc88ff", alpha = 0.7, },
-                { name = "plus.png^[multiply:#eeccff", alpha = 0.7, },
-            },
-            glow = 14,
-            collisiondetection = false,
-        })
+    if table_too_large then
+        tarot_redo.warn_table_too_large(player:get_player_name())
     end
 
     return true
+end
+
+function tarot_redo.highlight_table_inner(table_poses, vec_out, simple)
+    local v1, v2 = get_perpendicular_vector_basis(vec_out)
+    for _, pos in ipairs(table_poses) do
+        if simple then
+            -- Simple effect for warning when the table is too large.
+            core.add_particle({
+                pos = pos + vec_out * 0.5,
+                velocity = vec_out * 0.05,
+                expirationtime = 1,
+                texture = "plus.png^[multiply:#aa44ff",
+                glow = 14,
+                collisiondetection = false,
+            })
+        else
+            -- Full effect for highlighting table area using Tarot Book.
+            core.add_particlespawner({
+                amount = 20,
+                time = 0.1,
+                pos = {
+                    min = pos + vec_out * 0.5 - v1 * 0.5 - v2 * 0.5,
+                    max = pos + vec_out * 0.5 + v1 * 0.5 + v2 * 0.5,
+                },
+                minsize = 1,
+                maxsize = 3,
+                minvel = vec_out * 0.05,
+                maxvel = vec_out * 0.1,
+                minexptime = 1,
+                maxexptime = 2,
+                texpool = {
+                    { name = "plus.png^[multiply:#8800ff", alpha = 0.7, },
+                    { name = "plus.png^[multiply:#aa44ff", alpha = 0.7, },
+                    { name = "plus.png^[multiply:#cc88ff", alpha = 0.7, },
+                    { name = "plus.png^[multiply:#eeccff", alpha = 0.7, },
+                },
+                glow = 14,
+                collisiondetection = false,
+            })
+        end
+    end
+end
+
+function tarot_redo.warn_table_too_large(player_name, suppressable)
+    local max_table_size = tarot_redo.dedup_radius + 1
+    local message = S("WARNING: Your table is too large.  The maximum supported size is @1x@2.", max_table_size, max_table_size)
+    if suppressable then
+        message = message .. S(" (You can suppress this warning in settings. Open with /tarot_ui)")
+    end
+    core.chat_send_player(player_name, message)
 end

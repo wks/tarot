@@ -6,6 +6,8 @@ tarot_redo = {
     image_h = 527,
 }
 
+tarot_redo.dedup_radius = tonumber(core.settings:get("tarot_redo.dedup_radius")) or 25
+
 local path = core.get_modpath(modname) .. "/"
 
 dofile(path .. "settings.lua")
