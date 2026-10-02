@@ -11,6 +11,9 @@ core.register_tool("tarot_redo:tarot_book", {
 	}, "\n"),
 	inventory_image = "tarot_redo_tarot_book.png",
 	stack_max = 1,
+	groups = {
+		book = 1,
+	},
 
 	on_use = function(itemstack, player, pointed_thing)
 		if not player or not player:is_player() then return end
@@ -48,6 +51,9 @@ core.register_craftitem("tarot_redo:tarot_card", {
 	}, "\n"),
 	inventory_image = "tarot_redo_card_ico.png",
 	stack_max = #tarot_redo.deck, -- We all know how many cards a Tarot deck has. :)\
+	groups = {
+		book = 1,
+	},
 
 	on_place = function(itemstack, player, pointed_thing)
 		return tarot_redo.place_tarot_card(itemstack, player, pointed_thing)

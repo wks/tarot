@@ -71,6 +71,7 @@ function tarot_redo.make_tarot_card_node_def(card)
             tarot_card = global_ordinal,
             snappy = 3,
             dig_immediate = 1,
+            book = 1,
         },
         node_box = {
             type = "fixed",
