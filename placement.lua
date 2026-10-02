@@ -135,7 +135,7 @@ function tarot_redo.place_tarot_card(itemstack, player, pointed_thing)
         for _, table_pos in ipairs(tarot_table) do
             local above_table_pos = table_pos + vec_out
             local above_table_node_name = core.get_node(above_table_pos).name
-            local global_ordinal = core.get_node_group(above_table_node_name, "tarot_card")
+            local global_ordinal = core.get_item_group(above_table_node_name, "tarot_card")
             if global_ordinal ~= 0 and not excluded[global_ordinal] then
                 excluded[global_ordinal] = true
                 num_excluded = num_excluded + 1
