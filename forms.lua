@@ -3,30 +3,8 @@ local S = core.get_translator(modname)
 
 local gui = flow.widgets
 
-tarot_redo.form_configs = {
-    ver = 8,
-    w = 16,
-    h = 10,
-    tabw = 3,
-    paddings = 0.5,
-}
-
 local my_gui = flow.make_gui(function(player, ctx)
-    local tab_bar_def = {
-        min_w = 3,
-    }
-
-    for _, suit in ipairs(tarot_redo.suits) do
-        table.insert(tab_bar_def, gui.Button {
-            label = suit.title,
-            on_event = function(player, ctx)
-                ctx.page = suit.id
-                return true
-            end
-        })
-    end
-
-    local tab_bar = gui.VBox(tab_bar_def)
+    local tab_bar = tarot_redo.make_tab_bar(player, ctx)
 
     local page = ctx.page or "major"
 
@@ -51,11 +29,39 @@ function tarot_redo.open_main_ui(player)
     my_gui:show(player)
 end
 
+function tarot_redo.make_tab_bar(player, ctx)
+    local tab_bar_def = {
+        min_w = 3,
+    }
+
+    for _, suit in ipairs(tarot_redo.suits) do
+        table.insert(tab_bar_def, gui.Button {
+            label = suit.title,
+            on_event = function(player2, ctx2)
+                ctx2.page = suit.id
+                return true
+            end
+        })
+    end
+
+    table.insert(tab_bar_def, gui.Button {
+        label = S("Settings"),
+        on_event = function(player2, ctx2)
+            ctx2.page = "settings"
+            return true
+        end
+    })
+
+    return gui.VBox(tab_bar_def)
+end
+
 function tarot_redo.populate_right_pane(player, ctx, right_pane_def)
     local page = ctx.page or "major"
 
     if page == "card" then
         return tarot_redo.populate_card_page(player, ctx, right_pane_def)
+    elseif page == "settings" then
+        return tarot_redo.populate_settings_page(player, ctx, right_pane_def)
     else
         local cat_entry = tarot_redo.catalog[page]
         return tarot_redo.populate_suit_page(player, cat_entry, right_pane_def)
@@ -97,9 +103,9 @@ function tarot_redo.populate_suit_page(player, cat_entry, right_pane_def)
                 texture_name = card.image,
                 w = card_w,
                 h = card_h,
-                on_event = function(player, ctx)
-                    ctx.cur_card = card_id
-                    ctx.page = "card"
+                on_event = function(player2, ctx2)
+                    ctx2.cur_card = card_id
+                    ctx2.page = "card"
                     return true
                 end,
             })
@@ -171,4 +177,63 @@ function tarot_redo.populate_card_page(player, ctx, right_pane_def)
         description,
     }
     table.insert(right_pane_def, hlayout)
+end
+
+function tarot_redo.populate_settings_page(player, ctx, right_pane_def)
+    local debug = false
+
+    local vbox_def = {
+        gui.Label {
+            label = S("Settings"),
+        },
+    }
+
+    for _, setting in ipairs(tarot_redo.settings_list) do
+        local check_control = "checkbox_" .. setting.name
+        local reset_control = "reset_" .. setting.name
+        local info_control = "info_" .. setting.name
+        local selected = setting:get(player)
+        if debug then
+            core.debug("control:", check_control, "selected:", selected)
+        end
+        table.insert(vbox_def, gui.HBox {
+            gui.Checkbox {
+                name = check_control,
+                label = setting.title,
+                selected = selected,
+                on_event = function(player2, ctx2)
+                    local selected2 = ctx2.form[check_control]
+                    if debug then
+                        core.debug("Set. control:", check_control, "selected:", selected)
+                    end
+                    setting:set(player2, selected2)
+                end,
+            },
+            gui.ImageButton {
+                w = 0.5, h = 0.5,
+                align_h = "right",
+                name = reset_control,
+                texture_name = "settings_reset.png",
+                tooltip = S("Reset to default"),
+                on_event = function(player2, ctx2)
+                    if debug then
+                        core.debug("Reset. control:", check_control)
+                    end
+                    setting:reset(player2)
+                    ctx2.form[check_control] = setting:get(player2)
+                    return true
+                end,
+            },
+            gui.ImageButton {
+                -- Note: Image cannot have name and therefore cannot have tooltip.
+                w = 0.5, h = 0.5,
+                align_h = "right",
+                name = info_control,
+                texture_name = "settings_info.png",
+                tooltip = setting.description,
+            },
+        })
+    end
+
+    table.insert(right_pane_def, gui.VBox(vbox_def))
 end

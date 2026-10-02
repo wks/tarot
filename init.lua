@@ -8,6 +8,7 @@ tarot_redo = {
 
 local path = core.get_modpath(modname) .. "/"
 
+dofile(path .. "settings.lua")
 dofile(path .. "utils.lua")
 dofile(path .. "dictionary.lua")
 dofile(path .. "catalog.lua")
