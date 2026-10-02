@@ -367,8 +367,9 @@ function tarot_redo.highlight_table_inner(table_poses, vec_out, simple)
             core.add_particle({
                 pos = pos + vec_out * 0.5,
                 velocity = vec_out * 0.05,
-                expirationtime = 1,
-                texture = "plus.png^[multiply:#aa44ff",
+                expirationtime = 1.5,
+                size = 3,
+                texture = "plus.png^[multiply:#cc88ff",
                 glow = 14,
                 collisiondetection = false,
             })
@@ -402,7 +403,8 @@ end
 
 function tarot_redo.warn_table_too_large(player_name, suppressable)
     local max_table_size = tarot_redo.dedup_radius + 1
-    local message = S("WARNING: Your table is too large.  The maximum supported size is @1x@2.", max_table_size, max_table_size)
+    local message = S("WARNING: Your table is too large.  The maximum supported size is @1x@2.",
+        max_table_size, max_table_size)
     if suppressable then
         message = message .. S(" (You can suppress this warning in settings. Open with /tarot_ui)")
     end
