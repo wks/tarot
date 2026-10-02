@@ -116,8 +116,17 @@ function tarot_redo.place_tarot_card(itemstack, player, pointed_thing)
         local tarot_table = tarot_redo.find_table(above_pos, under_pos)
         local excluded = {}
         local num_excluded = 0
-        for i = 1, #tarot_redo.deck do
+        local total_cards = #tarot_redo.deck
+        local major_arcana_only = tarot_redo.settings_map.major_arcana_only:get(player)
+        local major_arcana_max = #tarot_redo.catalog.major.cards
+        for i = 1, total_cards do
             excluded[i] = false
+        end
+        if major_arcana_only then
+            for i = major_arcana_max + 1, total_cards do
+                excluded[i] = true
+            end
+            num_excluded = total_cards - major_arcana_max
         end
         for _, table_pos in ipairs(tarot_table) do
             local above_table_pos = table_pos + vec_out
@@ -139,8 +148,10 @@ function tarot_redo.place_tarot_card(itemstack, player, pointed_thing)
 
         local random_ordinal
         if available == 0 then
-            core.chat_send_player(player_name,
-                S("WARNING: All Tarot cards can be found on the table.  Drawing at random."))
+            local message = major_arcana_only and
+                S("WARNING: All major arcana can be found on the table.  Drawing at random.") or
+                S("WARNING: All Tarot cards can be found on the table.  Drawing at random.")
+            core.chat_send_player(player_name, message)
             random_ordinal = math.random(#tarot_redo.deck)
         else
             if debug then

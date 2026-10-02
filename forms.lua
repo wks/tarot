@@ -81,9 +81,7 @@ function tarot_redo.populate_suit_page(player, cat_entry, right_pane_def)
     local cur_row = nil
     local cards_per_row = 7
 
-    -- The Fool is number 0.
-    for index = cat_entry.first, cat_entry.last do
-        local card = cat_entry.cards[index]
+    for _, card in ipairs(cat_entry.cards) do
         if not cur_row or #cur_row == cards_per_row then
             cur_row = {}
             table.insert(rows, cur_row)

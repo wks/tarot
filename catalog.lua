@@ -2,11 +2,11 @@ local modname = core.get_current_modname()
 local S = core.get_translator(modname)
 
 tarot_redo.suits = {
-    { id = "major",     title = S("Major Arcana"), first = 0, last = 21 },
-    { id = "wands",     title = S("Wands"),        first = 1, last = 14 },
-    { id = "cups",      title = S("Cups"),         first = 1, last = 14 },
-    { id = "swords",    title = S("Swords"),       first = 1, last = 14 },
-    { id = "pentacles", title = S("Pentacles"),    first = 1, last = 14 },
+    { id = "major",     title = S("Major Arcana") },
+    { id = "wands",     title = S("Wands") },
+    { id = "cups",      title = S("Cups") },
+    { id = "swords",    title = S("Swords") },
+    { id = "pentacles", title = S("Pentacles") },
 }
 
 tarot_redo.catalog = {}
@@ -15,8 +15,6 @@ for _, suit in ipairs(tarot_redo.suits) do
     local cat_entry = {
         id = suit.id,
         title = suit.title,
-        first = suit.first,
-        last = suit.last,
         cards = {},
     }
     tarot_redo.catalog[suit.id] = cat_entry
@@ -29,7 +27,7 @@ end
 tarot_redo.id_to_card = {}
 
 for _, card in ipairs(tarot_redo.deck) do
-    tarot_redo.catalog[card.suit].cards[card.ordinal] = card
+    table.insert(tarot_redo.catalog[card.suit].cards, card)
     local card_id = tarot_redo.card_to_id(card)
     tarot_redo.id_to_card[card_id] = card
 end
